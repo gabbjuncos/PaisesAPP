@@ -1,0 +1,105 @@
+crear nuevo proyecto 
+
+ng new paisesApp
+
+darle que yes decile que trabaje lo mas estricto posible
+darle YES para crear las rutas 
+
+doc endponit con info de pasises de todo el mundo
+
+https://documenter.getpostman.com/view/1134062/T1LJjU52
+
+ver en API endpoint
+
+para levantar el servidor
+
+ng serve -o
+
+-___
+
+
+ESTRUCTURA DEL PROYECTO
+
+se crear una carpeta shared que va a contener el menu, footer y side bar
+como lo vamos a seprar en modulos creamos esas carpetas
+
+y tambien se crea la carpeta pais
+donde le agregamos las carpetas components, pages, services, interfaces
+
+en pages van a ir componentes tambieen
+van a ir las pantallas para ir cambiando de lugar las urls en las que nos encontremos
+________
+
+GENERAMOS UN MODULO DENTRO DE PAIS
+
+ng g m pais
+por defecto lo modulos no son importados en ningun lugar
+y lo mismo para la carpeta shared
+
+ng g m shared
+
+tendria un modulo para cada carpeta general, pasi y shared
+y en cada una de las carpetas que coitnene cada contenedor(pais y shared)
+
+se va a crear un componente, por ejemplo un compoenntes para sidebar
+
+ng g c shared/sidebar
+
+en caso que creamos malo cambiarle de nombre al crear un componente
+ahy que editar el modulo porque lo esta importando, shared moduel por ejemplop
+
+y en pages se crean las paginas
+por ejemplo por capital
+
+esas opciones son para no crear los archivos test
+ng g c pais/pages/porCapital --skipTests -is
+
+y tiene que aparece imortando en pais module
+
+se crea otro
+
+ng g c pais/pages/porRegion --skipTests -is
+
+y otro para ver pais 
+para ver la info de un pais independiente
+
+ahora hay que exportar los compoentes que se va na ver a nivel global
+
+por ejemplo el modulo shred component lo utilicenmos en otros lugares
+asi que hay que importarlo
+
+por ejemplo en el app component
+
+asiq ue desde el modulo shred, lexportamos el shared coponent
+para poderlo utilizar en el app component
+
+se crean los 4 componentes para el modulo pais
+
+PorCapitalComponent,
+    PorRegionComponent,
+    VerPaisComponent,
+    PorPaisComponent
+
+y se los exporta desde el modulo pais
+
+
+y como son modulos que voy a ocupar, hay que importarlos en el app module
+
+y una vez importados en el app module los podria ver desde app component html
+
+_________
+
+estructura del html component 
+
+con la clase active se ve de color azul, como si fuera la opcion seleccionada
+
+
+
+routing o rutas
+para mostrar contenido a partir de la ruta que se ejecute
+
+
+
+
+
+
