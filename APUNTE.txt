@@ -7,7 +7,7 @@ darle YES para crear las rutas
 
 doc endponit con info de pasises de todo el mundo
 
-https://documenter.getpostman.com/view/1134062/T1LJjU52
+https://restcountries.com/#api-endpoints-v2-all
 
 ver en API endpoint
 
@@ -99,7 +99,197 @@ routing o rutas
 para mostrar contenido a partir de la ruta que se ejecute
 
 
+rutas principales
+
+y subrutas, rutas que puede tener una principal
+
+para las rutas
+
+se crea el archivo app-routing.module.ts
+se importa ngmodule
+
+se exporta AppRoutingModule
+y se coloca el decorador NgModule
+
+y se define una constante routes tipo Routes importandola
+
+en route 
+la palabra clave path:'' seria la pagina principal
+y le asociamos el componente, el componente tiene que estar imporado el 
+modulo en app moduel y exportado en correspondiente componente
+y hay que ponerle pathMatch full
+esa seria la config para la ruta principal
+
+seria el primer componente que se quiere mostrar  cuando alguien ingrese
+
+voy a necesitar una ruta especial para ver pais
+porque cuando quiera ver los datos de un pais va a ir a la url
+entonces se le agregar :codigo  para darle un nombre a ese argumente de la
+ruta y que sea dinamico
+
+y la otra que tienen que esta es para el caso en que no sea ninguna 
+de las opciones anteriores 
+usualmente se coloca la ultimo
+
+y se coloca un *
+
+path:'**' es dieciar cualquier otro path que no sea de arriba
+
+y le decimos a donde redirigir con el redirectO
+
+ACA NO HAY QUE EXPORTARLO 
+
+lo unico que tenenemos que hacer es agregarlo en el import RouterModule
+y es forRoot() porque es para las principales y no tenemos las hijas
+que serian forChild
+y le pasamos como parametro el arreglo de rutas
 
 
+y luego tambien se exporta el RouterModule
 
+el app-routing.module.ts el que creamos, tiene que estar dentro del app
+
+y por ultimo tneos que importarlo en los import del app module principal
+
+luego en el appcomponente html
+el principal 
+
+podemos usar un componente que nos importal el routermoudel
+que es el router-outlet
+
+el routermodule es el modulo propio de angular
+y solo tendriamos un solo router module por app
+y varias hijas
+
+_________________
+
+para hacer el routeo podemos unsar en el htmlagregar la porpiedad
+routerLink que nos importar el RouterModule
+y le poasamos la url del path app routing
+
+y no refresca todo el navegador web
+
+le hago lo mismo para region , pero para buscar pais seria el string vacio
+
+ahora se agrega la clase active dependiendo del url en el que se encuentre
+usando la propiedad de angular routerLinkActive, para agregarle una clase
+para cuando me encuentro en ese link router url
+va abajo del routerlink
+
+pero el buscar por pais siempre va a estar active porque es la ruta pathMatch full
+
+para eso hay que agregar la propuedad
+[routerLinkActiveOptions] = "{ exact:true}"
+
+_____________
+
+el list group del html app.component.html es el menu osea 
+el sidebar
+
+y lo mejor seria llevarlo a un modulo
+para que en app.component no haya mucha logica
+
+hay que agregar le modulo RouterModuel en el import
+del modulo shared para poder usarlo
+si bien ya lo habiamos puesto en el app.routing pero no lo estamos
+cargadon 2 veces porque angular es inteligente y diceque lo tiene
+cargado en memoria u como ve que otro modulo tambien lo tiene definido, lo reutiliza
+
+
+los modulos.ts son burbujas indepenedientes
+tenemos que importarlo
+
+y para mostrar por pantlla el cursor que se puede hacer click
+se puede agregar en styles de sidebar componente
+un template diciendo que los componentes li de html 
+van a tener el cursor pointer
+
+serian los li solamente de sidebar component, y permite trabjar
+los li de forma encampsulada
+
+_____________
+
+componente por pais html
+
+para que en el form no se autocomplete
+
+se agrega tambien para hacer una tabla
+
+classe para la tabla de resultados table-hover para que se vea de un gris
+cuando no haya datos para mostrar
+
+
+autocomplete="off"
+
+
+en el ngModel esta trayendo la propiedad termino del component ts y lo esta
+mostrando en el buscador por defecto, cuando se presionar enter
+
+y en el fomr le agre ngSumit para disparar un evento buscar() que se va a 
+definir en el component pais
+
+
+crear servicio  en carpeta pais y services, llamado pais
+
+ng g s pais/services/pais
+
+con el injectable 
+el service se inyecta de manera global como singleon en la app
+
+se define en el service como atributo privado
+la url base
+
+y el comudlo http de angular se lo pone usualmente en el app module
+porque se usuarioa de varios lados
+
+lo importamos en app module al modulo HttpClient en 
+import {HttpClientModule} from '@angular/common/http
+
+ y luego lo iyectamos en el servicio pais.service.ts
+en el constructo colocando el tipo 
+
+el termino seria el termino de busqueda
+
+se define el metodo buscarPais en paiservice
+
+el metodo retorna un obj tipo observable
+entnces le ponemos el  tipo que retorna,  se que va a devolver una lista con 
+los paises pero con el observable va a ser del tipo generico
+y tendria que definirle una interfaz
+
+en el por pais components se inyecta el servicio en el constructor
+
+para que el observable se dispare tengo que tener el suscribe
+
+en el metodo del suscribe podemos poner los argumentos
+para controlar el error o cuando esta completa
+
+se agrega un atributo para saber cuando se produce un error
+
+y luego en el html del componente se agrega la directiva 
+ngIf para ver si es true la variable hayError y mostrar el mensaje
+
+*ngIf="hayError"  si es true se muestra el error 
+
+para agarrar el error desde el service 
+importando catchError de rxjs/operators
+
+el catchError es una funcion y tegno que regresar un observable
+colocando el of, el of es una funcion que genera observables, que transforma
+lo que pongamos en los parentesis en un nuevo observable
+
+y retorna un arreglo vacio []
+lo saca a esa parte
+
+return this.http.get(url)
+      .pipe(
+        catchError( err => of([])));
+
+ , lo resulve de la manera que ya estaba sin atrapar
+el erro en el service
+
+
+luego hacemos  que se muestre la tabla si no hay error *ngIf ="!hayError"
+eso lo hacemos agregando el *ngIf en la parte de la tabla del componente 
+html por pais
 
