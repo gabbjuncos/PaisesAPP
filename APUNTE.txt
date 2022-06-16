@@ -293,3 +293,161 @@ luego hacemos  que se muestre la tabla si no hay error *ngIf ="!hayError"
 eso lo hacemos agregando el *ngIf en la parte de la tabla del componente 
 html por pais
 
+___________
+
+crear interfaces, para darle un tipado a las respuestas http 
+
+para crear la interfaz se pega la consulta en app.quicktype.io
+una consulta exitosa
+
+y se le pega en la app.quicktype.io y se cambia de nombre
+
+https://restcountries.com/v2/name/esp
+
+y en las opciones en type script
+y en only interfaces
+
+y se crea en interfaces el pais.interface.ts
+y pegamos todo
+
+todo lo que tengamos ahi nos va a ayudar con el tipado
+
+como son datos de un pais, no trae otro cosa, le pone de nombre country
+si trajera mas cosas le deja de nombre research
+porque retorna un arreglo de pais
+
+como retorna un arreglo de paises
+lo pone como arreglo [] 
+Country[]
+
+y en el get tambien se pone en el service <> seria un generico
+y dentro el tipo
+
+y si me voy a por pais components ts tengo los atributos 
+del pais
+en resp
+
+para mostrar contenido seria
+obtener los datos desde components ts y defiir la variable ahi
+luego en el html lo llamamos 
+
+para el indice se agrega al ngFor
+
+let i = index
+
+y en la clase de la imagane [src]="pais.flag" el pais.flag es una direccion donde esta la imagen
+
+y para cada atributo
+{{pais.name}} va entre llaves y el nombre del atributode la interfaz
+
+se puede agregar el pipe en la expresion {{ | number}}
+para que lo muestre como numero y se llama number el pipe
+
+luego se agrega el routerLink
+para el link ver..
+en conrchetes para construir la informacion de la ruta
+y se coloca la url /pais
+y como segundo argumento el pais.alpha2Code la propiedad de la interfaz
+hay que importar el routerMouduel en el pais module
+y en el segundo argumento de [] es el simbolo del pais que va  formar parte
+de la url
+se arma en base al al ver que se haga click
+
+/pais/AR
+
+y en el ngif se cambia par que si la longuitud de la lista de paises
+sea mayor a 0 se muesttre la tabla y sino el mensaje que no se coencontro
+nada
+
+__________________________________
+
+
+se saca la tabla de por pais comoponent 
+y se crea un componente especificamente para la tabla
+en ng g c pais/components/pais-table
+y en el html pego el html de la tabla solamente
+
+lugo en el por pais component le meto el component tabla
+
+y en el pais tabla components hay que importar los datos
+paises para mostra que estan en por pais compnentes
+
+con el @input
+
+y en el tag
+
+<app-pais-tabla></app-pais-tabla>
+se agrega los datos con [paises] = "paises"
+"paises" es la propiedad que esta en por pais components que se lo estoy
+mandando al app-pais-tabla con [paises] ahi es el nombre como lo mando
+
+
+se crea el compintenet pais-input
+para el forumulario del buscador
+
+se hace lo mismo que el anterior
+
+___
+
+en el componente pais-input  se agrega el decorador 
+
+@Output() onEnter: EventEmitter = new EventEmitter()
+
+llamado onEnter puede ser cualquir nombre y es del tipo
+Event Emtter y va a ser igual a un new Event Emitter
+y el termino que se va a emitir es del  tipo string
+
+ahora en el metodo buscar cuando se presione enter, se va a emitir el evento
+el this.termino
+
+y el evento se va a emitir desdel app-pais.input desde el por pais components html
+se le agrega los parentesis porque va a escuchar el evento
+escuchar el evento OnEnter y llamo el evento buscar
+que esta en el por pais component
+y se le manda el $event
+el evento va a tener el string
+
+y hay que ponerlo en el argumento por pais components a ese parametro
+
+porque funciona?
+cuando se preciona enter se dispara el buscar que esta en pais input
+
+el cual se esta escuhando en el padre por pais componet html y cuando
+se recibe ese evento va a dispara el buscar
+
+_____________
+
+caja de sugerencias en el buscador por pais
+debounceTime - en el input
+
+para el caso en que tengamos que esta disparando busquedas cada vez 
+que la persona escribe ahi si se aconseja el debouceTime
+
+en el pais input se crea otro Output y se va a emitir un string
+
+@Output() onDebounce: EventEmitter<string> = new EventEmitter();
+y va a emitir un string
+
+para hacer esto,  primera forma, el Rx viene con un observable especial
+subject , permite crear un observable manualmente
+
+no es nada de angular rxjs
+
+y para suscribirme a los valores que emite el observable subject llamado debouncer
+y va a emitir cuando se deje de escribir
+
+hay que usrar on inits
+
+el ngOnInit se dispara una vez y es cuando el componente es creado
+
+entonces lo  implemento y defino el debuunse ry me suscrbio a sus eventos
+
+y para que funcione
+
+hay que conectarle al input otro evento y pasarle el evento
+teclaPresionada($event)
+
+y se define el evento en el component pais input definiendo el parametro
+recibido como tipo any, habria que darle el tipo keyboard
+
+minto 6.32
