@@ -450,4 +450,119 @@ teclaPresionada($event)
 y se define el evento en el component pais input definiendo el parametro
 recibido como tipo any, habria que darle el tipo keyboard
 
-minto 6.32
+se llama al deboucer desde el metodo teclaPresionada para emitir un valor
+para emitir un valor y va a ser el termino
+this.debouncer.next(this.termino)
+cada vez que se presione una tecla el debouncer va a llamar el next
+el next esta suscrito en el ngOnInit
+
+el pipe en el debouncer es para transformar lo que envia 
+como por una manguera, transforma la salida del suscribe
+hay un operador debounceTime y me pide el valor en tiempo
+de cuanto quiero esperar hasta que emita el sisguiente valor
+
+seria que no se emita algun valor hasta que no se deje de escribir algun valor
+luego de los 300 milesimas de segundos
+
+se escribe y luego de 300 segundos sin escribir muestra lo escrito
+
+el valor que se emite es a traves del observable
+
+y luego en el html por pais se agrega el evento onDebounce
+
+se  define el metodo sugerencias en por pais components ts
+
+y lo que se hace hasta el momento es que cuando se escribe en el buscador
+y se deja de escribir y s epreciona en enter muestra el mensaje que no se 
+encontro nada cuando corresponda y si se sigue escribiendo desaparece hasta
+que se presione enter de nuevo
+
+_________________
+
+HACER FUNCIONAR POR CAPITAL
+
+se copia y pega todo igual y se crea un nuevo metodo para el capital
+
+se tiene que agregar el metodo para solicitar por capital en el service
+
+se manda tambien el place holder en el html del por capital
+
+le estoy mandando al input de por pais-capital.component el placeholder
+
+el component pais input component se agrega el decorador 
+@Input() placeholder: string = '';
+para agregar otra propiedad
+
+y en el html de pais input puedo llamarlo con los [] a la propeidad
+
+en el por capital hmtl cambien el valor del place holder de lo que se va a mostar
+por ejemplo buscar por capital...
+
+
+________________
+
+VER PAIS DE FORMA INDEPENDIENTE
+
+se quiere obtener el segmento de la url y mostrarlo por consola
+osea el codigo del pais que se ve en la url
+
+para eso la idea es subcribrise con un obsevable a los cambios de la url
+suscribirse a cualquier cambio de la url
+
+en el ngOnInit lugar para suscribirse a esos cambios
+
+en el ver pais components ts
+se lo inyecta en el construtor
+
+el nombre no importa
+activatedRoute
+del tipo ActivateRoute
+
+el el onIniti se llama la propiedad que se acaba de inyectar
+
+luego se usa la propiedad params y tenemos el metodo suscribe, porque es
+un observalbe el activatedRoute
+y recibe un params
+
+y traigo los parametos de la url con la propiedad params
+
+muestra en el console lo tenga en la url
+tipo id
+sabe que es un id lo que trae porque se lo definio en el routing
+de app routing
+path:'pais/:id' 
+
+({id}) de esa forma estamos desesctruturando el obj 
+con el id y camputamos el id
+
+ahora hay que hacer un metodo en el service
+para hacer la consulta por codigo de pais
+
+se va a llamar getPaisPorAlpha, basiamente es el mismo metodo
+solo recibe como parametro el id y se lo agrega a la url
+que va a retornar solo un pais
+con alpha en la url se hace la peticion a la api
+
+y tenemos que injetar el servicio en el ver pais components
+
+con el metodo definido en el service 
+al buscar por pais y hacer click en ver
+te lleva a la pagina de ver pais y en la url figura el codigo
+entonces con el metodo se captura ese id y se hace una soliciutd get
+para traer la info de ese pais por el codigo de pais mostrado por console
+
+
+_____________
+
+RXJS - SWITCH MAP
+
+reducir del ver-pais el suscribe
+antes de suscribirme al observable
+uso el pipe con los operadores rxjs
+
+se usa el operador switchMap
+que recibe un observable y devuelve otro observable
+
+importado desde rxjs/operators
+
+min 2.10 en el 8.20
