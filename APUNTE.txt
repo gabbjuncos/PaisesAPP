@@ -1,3 +1,7 @@
+para eliminar historial de comanndos del git 
+
+history -c command
+
 crear nuevo proyecto 
 
 ng new paisesApp
@@ -565,4 +569,100 @@ que recibe un observable y devuelve otro observable
 
 importado desde rxjs/operators
 
-min 2.10 en el 8.20
+operador switchMap()
+dentro de pipe
+el switch map, recibe un valor del observaable anterior y retorna un nuevo
+observable
+
+____________
+
+SACAR AL USUARIO DE LA PANTALA POR PAIS CUANDO LA URL ES INVALIDA POR 
+CODIGO DEL PAIS
+
+como pais tiene que ser del tipo Country y tiene que ser una propiedad
+pero como el tipo pais que defini no acepta valor null
+hay que decirle a type script que si lo permita porque lo necesito asi
+al principio
+
+se hace agregandole el signo ! antes de la variable
+
+y le digo en el suscribe que el pais va a ser al pais que se recibe como
+argumento
+
+ahora para mostrar ese valor se usa el operador tap de rxjs que es un 
+operador secundario
+
+para este caso tap recibe el producto de ese observable y el tap imprime
+por consola lo que se responda
+
+en el html de ver pais 
+
+se agrega para que salga una ventanita miestras esta cargadno en ver pais
+
+y otro div para mostrar la info del pais
+
+estaria dando error al querer acceder a la propiedad .name de 
+country que es null | undefined.name
+
+para eso pregntamos en el div del mensaje de alerta con ngif 
+para ver si existe
+
+le agregamos el else
+en caso que si tenga la info del pais
+mostrar el divPais
+
+para el divPais creamos un template con ng-template y se asignamos 
+el valor #divPais
+
+se agrega al div para mostrar la imagen de la bandera con la clase img-thumbnail
+
+se agrega la clase bootstrap
+.mr-1 para que haya separacion
+
+
+el bloque pre en html seria como se ve algun tipo de codigo
+
+con el pipe tambien puedo hacer que se muestre como formato json
+
+______________________
+
+ngClass class [class]
+
+se crean los tipos de regin en el modulo de por regin component
+
+en el html se puede crear varios botones usando un ngfor
+de una lista etnocnes eso hace que se me creevarios botones de una vez
+la lista de regiones del component
+y el nombre del boton va a ser el nombre del elemento de la lista recorrida
+
+como se quiere cambiar los estilos en un solo componente
+en el de region, se puede ponerlo directamente en el apartado para styles de del
+component ts, solo aplicables a los botones de este componente
+
+para saber la reguin activa a la que se hizo click 
+se crea la propiedad en el component por region ts
+
+en las clases delboton 
+agrego el evento (click) asociada una funcion definida en el compoent html
+activarRegion
+a la que se le envia como parametro la region del boton seleccionado de la 
+lista de botones
+
+para que solo muestre el boton con color de activo
+se usa la clase class.abc en true, entre [class.abc]
+si es true que se muestre esa clase
+ese true se podria obtener como 
+region === regionActiva
+
+se puede hacer lo mismo usando 
+[ngClass] y asignarle un objeto de java script
+
+COMO PONER CLASES CONDICIONALES EN JAVA SCRIPT
+SERIA PODER EVAULUAR UNA CONDISION A PARTIR DE SI NO SE CUMPLE LA ANTERIOR
+
+[class]="(region === regionActiva) ? 'btn btn-primary': 'btn btn-outline-primary'"
+
+ahora la idea es definir una funcion y en base a la region mostrar si es una clase o la otra
+para el boton
+
+min 1.56
