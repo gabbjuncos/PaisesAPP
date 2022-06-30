@@ -665,4 +665,66 @@ SERIA PODER EVAULUAR UNA CONDISION A PARTIR DE SI NO SE CUMPLE LA ANTERIOR
 ahora la idea es definir una funcion y en base a la region mostrar si es una clase o la otra
 para el boton
 
-min 1.56
+se puede usar 
+
+return (region === this.regionActiva) ? 'btn btn-primary': 'btn btn-ouline-primary'
+
+se hace una comparacion si coiciden las regiones y se hace la comparacion en ? si es verdadero
+muestra el primer estilo y si es false el segundo
+
+y en el html se agrega el estilo para el boton 
+
+_____________
+
+MOSTRAR PAISES POR REGION
+
+se debe crear el metodo en el services paises
+
+y se agrega la propiedad o variabla paises en por region components ts
+
+___________________
+
+FILTRANDO DATOS PARA QUE NO PESE TANTO LA RESPUESTA
+PRIMERO PARA EL CASO DE CONSULTAR PAISES POR SIMBOLO PAIS, TAMBIEN PARA QUE SEA MAS RAPIDO
+PORQUE SINO FILTRO ME TRAE DATOS QUE NO NECESITO
+
+https://restcountries.com/v2/name/?fields=name,capital,alpha2Code,flag,population
+
+como el mismo filtro lo tendria que aplicar en las peticiones para buscar Pais
+buscarCapital y buscarRegion , para no tene que copiar y pegar en cada uno, se define un metodo
+llamado httpParams
+
+lo armaria como lo hago en la url de postman
+
+y se lo paso como segundo parametro en el http.get de la url
+como params:this.httpParams que seria la propiedad que defini
+en el metodo httpParams
+
+____________
+
+ANIMACIONES DE CSS
+
+https://animate.style/
+
+dice que es mejor agregarlo en el head para hacer la instalacion
+
+a la tabla tambien se lo hace
+pero solo en pais-tabla porque como lo habiamosseparado en secciones
+si cambio ahi cambio en todos
+
+eso es lo bueno de haberlo separado
+
+______________
+
+AUTOCOMPLETE
+
+ya esta hecho el debounce que hace emitir lo escribdo luego de que se deja de escribir
+por 300 milesimas de segundos
+
+crear el html de como quiero que se vean las sugerencias
+
+consultas a la api de binance para futuros
+
+https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=100
+
+https://fapi.binance.com/fapi/v1/ticker/price
