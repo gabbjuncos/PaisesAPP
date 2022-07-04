@@ -728,3 +728,52 @@ consultas a la api de binance para futuros
 https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=100
 
 https://fapi.binance.com/fapi/v1/ticker/price
+
+_________________________
+
+SUGERENCIAS 
+si escribo ho tendria que mostrar todos los paises que empiezan con ho
+en el buscador por pais
+
+el debouncer ya esta hecho que lo que hace es emitir el valor escrito despues de 300 milisegundos
+despues de que la persona dejo de escribir
+
+prime paso crear el html de como quiero que se vean las sugerencias
+
+en html se hace unla list group para la sugerencias
+y para el efecto de click se agrega la clase 
+
+list-group-item-action
+
+en el componente se agrega la clase para que de efecto de que se puede hacer click
+con el cursor 
+en styles
+
+se crea la lista paises sugeridos 
+en el metodo sugerencias agrego para las sugerencias en el buscador
+ejecutando el metodo buscar pais y luego luego los paises 
+que obtengo me quedo con los 3 primeros que coinciden con lo escrito en el buscador
+y se lo asigno a la lista de de paises suegeridos que es lo que se va a mostrar en el
+html por pais component
+
+la clase para sombreado que se esta seleccionado es list-group-item-action
+
+para navegar al pais se agrega el link con <a></a> y se agrega el routerlink
+y en el router le pasamos lo parametros
+para armar la url
+['/pais', pais.alpha2Code]
+
+
+se agrega la clase al link "nav-link" para que se vea mejor y no cn el subrayado
+
+crea otro link
+para buscar
+que al hacerle click Onclick va a llamar al metodo
+buscarSugerido
+
+y se define otro metodo para poder ocultar las sugerencias
+
+y se agrega el ngif para mostrar la sugerencia cuando sea true
+mostrarsugerencias
+
+se pasa a true cuando se ejecutet sugerencias
